@@ -1,0 +1,141 @@
+:root{
+    --bg-clr: #fff;
+    --outline-clr: #b0b7bf;
+    --active-outline-clr: #4f5255;
+    --key-clr: #cfd7e1;
+    --key-clr-on-haver: #b5bdc7;
+    --key-char-clr: #3b3c3e;
+
+    --absent-clr: #a4aec4;
+    --present-clr: #f3c237;
+    --correct-clr: #79b851;
+}
+*{
+    user-select: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: var(--bg-clr);
+}
+#game{
+    position: absolute;
+    left: 50%;
+    top: 20%;
+    transform: translate(-50%, -20%);
+}
+#info-panel{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: var(--bg-clr);
+    width: 425px;
+    height: 125px;
+    font-weight: bold;
+    font-size: 2rem;
+    box-shadow: 0px 0px 25px 10px var(--outline-clr);
+    border-radius: 6px;
+    position: absolute;
+    z-index: 25;
+    left: 50%;
+    top: 75%;
+    transform: translate(-50%, -75%);
+    opacity: 0;
+    transition: 0.3s;
+}
+#info-panel:is(.active){
+    opacity: 1;
+}
+#guess-panel{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+#game .tile-wrapper{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-content: flex-start;
+}
+#game .tile{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 700;
+    border: 3px solid var(--outline-clr);
+    transition: 0.3s;
+}
+/* TILE STATES */
+#game .tile:is(.absent){
+    background-color: var(--absent-clr);
+    border: var(--absent-clr);
+    color: var(--bg-clr);
+}
+#game .tile:is(.present){
+    background-color: var(--present-clr);
+    border: var(--present-clr);
+    color: var(--bg-clr);
+}
+#game .tile:is(.correct){
+    background-color: var(--correct-clr);
+    border: var(--correct-clr);
+    color: var(--bg-clr);
+}
+/**/
+@keyframes tilePopIn {
+    0%{
+      scale: 1;  
+    }
+    50%{
+        scale: 1.05;
+    }
+    100%{
+        scale: 1;
+    }
+}
+#game .tile:is(.active){
+    animation: tilePopIn 0.25s ease-in-out forwards;
+    border-color: var(--active-outline-clr);
+}
+#keyboard-panel{
+    transform: translate(-10%, 15%);
+}
+#keyboard-panel .key{
+    cursor: pointer;
+    position: absolute;
+    font-weight: bold;
+    font-size: 1.65rem;
+    background-color: var(--key-clr);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+
+    transition: .3s;
+
+    color: var(--key-char-clr);
+}
+#keyboard-panel .key:hover{
+    transition: 0.25s ease-out;
+    background-color: var(--key-clr-on-haver);
+}
+/* KEYBOARD STATES */
+#keyboard-panel .key:is(.absent){
+    background-color: var(--absent-clr);
+    border: var(--absent-clr);
+    color: var(--bg-clr);
+}
+#keyboard-panel .key:is(.present){
+    background-color: var(--present-clr);
+    border: var(--present-clr);
+    color: var(--bg-clr);
+}
+#keyboard-panel .key:is(.correct){
+    background-color: var(--correct-clr);
+    border: var(--correct-clr);
+    color: var(--bg-clr);
+}
